@@ -8,51 +8,60 @@
 #---
 require 'test_helper'
 
-class CartsControllerTest < ActionController::TestCase
+class OrdersControllerTest < ActionController::TestCase
   setup do
-    @cart = carts(:one)
+    @order = orders(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:carts)
+    assert_not_nil assigns(:orders)
+  end
+
+  test "requires item in cart" do
+    get :new
+    assert_redirected_to store_path
+    assert_equal flash[:notice], 'Your cart is empty'
   end
 
   test "should get new" do
+    item = LineItem.new
+    item.build_cart
+    item.product = products(:ruby)
+    item.save!
+    session[:cart_id] = item.cart.id
     get :new
     assert_response :success
   end
 
-  test "should create cart" do
-    assert_difference('Cart.count') do
-      post :create, cart: {  }
+  test "should create order" do
+    assert_difference('Order.count') do
+      post :create, order: { address: @order.address, email: @order.email, name: @order.name, pay_type: @order.pay_type }
     end
-
-    assert_redirected_to cart_path(assigns(:cart))
+    assert_redirected_to order_path(assigns(:order))
   end
 
-  test "should show cart" do
-    get :show, id: @cart
+  test "should show order" do
+    get :show, id: @order
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @cart
+    get :edit, id: @order
     assert_response :success
   end
 
-  test "should update cart" do
-    patch :update, id: @cart, cart: {  }
-    assert_redirected_to cart_path(assigns(:cart))
+  test "should update order" do
+    patch :update, id: @order, order: { address: @order.address, email: @order.email, name: @order.name, pay_type: @order.pay_type }
+    assert_redirected_to order_path(assigns(:order))
   end
 
-  test "should destroy cart" do
-    assert_difference('Cart.count', -1) do
-      session[:cart_id] = @cart.id
-      delete :destroy, id: @cart
+  test "should destroy order" do
+    assert_difference('Order.count', -1) do
+      delete :destroy, id: @order
     end
 
-    assert_redirected_to store_path
+    assert_redirected_to orders_path
   end
 end
