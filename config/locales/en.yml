@@ -1,63 +1,50 @@
 
-es:
+en:
 
   number:
     currency:
       format:
-        unit:      "$US"
+        unit:      "$"
         precision: 2
-        separator: ","
-        delimiter: "."
-        format:    "%n&nbsp;%u"
+        separator: "."
+        delimiter: ","
+        format:    "%u%n"
 
-  activerecord:
-    models:
-      order:       "pedido"
-    attributes:
-      order:
-        address:   "Direcci&oacute;n"
-        name:      "Nombre"
-        email:     "E-mail"
-        pay_type:  "Forma de pago"
-    errors:
-      messages:
-        inclusion: "no est&aacute; incluido en la lista"
-        blank:     "no puede quedar en blanco"
   errors:
     template:
-      body:        "Hay problemas con los siguientes campos:"
-      header:
-        one:       "1 error ha impedido que este %{model} se guarde"
-        other:     "%{count} errores han impedido que este %{model} se guarde"
+      body:        "There were problems with the following fields:"
+      header:       
+        one:       "1 error prohibited this %{model} from being saved"
+        other:     "%{count} errors prohibited this %{model} from being saved"
 
   layouts:
     application:
-      title:       "Publicaciones de Pragmatic"
-      home:        "Inicio"
-      questions:   "Preguntas"
-      news:        "Noticias"
-      contact:     "Contacto"
+      title:       "Pragmatic Bookshelf"
+      home:        "Home"
+      questions:   "Questions"
+      news:        "News"
+      contact:     "Contact"
 
   carts:
     cart:
-      title:       "Carrito de la Compra"
-      empty:       "Vaciar Carrito"
-      checkout:    "Comprar"
+      title:       "Your Cart"
+      empty:       "Empty cart"
+      checkout:    "Checkout"
 
   store:
     index:
-      title_html:  "Su Cat&aacute;logo de Pragmatic"
-      add_html:    "A&ntilde;adir al Carrito"
+      title_html:  "Your Pragmatic Catalog"
+      add_html:    "Add to Cart"
 
   orders:
     new:
-      legend:       "Por favor, introduzca sus datos"
+      legend:       "Please Enter Your Details"
     form:
-      name:         "Nombre"
-      address_html: "Direcci&oacute;n"
+      name:         "Name"
+      address_html: "Address"
       email:        "E-mail"
-      pay_type:     "Forma de pago"
-      pay_prompt_html: "Seleccione un m&eacute;todo de pago"
-      submit:       "Realizar Pedido"
+      pay_type:     "Pay with"
+      pay_prompt_html: "Select a payment method"
+      submit:       "Place Order"
 
-  thanks:          "Gracias por su pedido"
+  thanks:          "Thank you for your order"
